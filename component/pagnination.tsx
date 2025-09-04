@@ -16,7 +16,6 @@ export function Pagnination() {
           <PaginationPrevious href="#" />
         </PaginationItem>
 
-
         <PaginationItem>
           <PaginationLink href="#">1</PaginationLink>
         </PaginationItem>
