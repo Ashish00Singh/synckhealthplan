@@ -1,27 +1,21 @@
 "use client"
-import AddDilogbox from '@/component/addDilogbox'
-import Topcard from '@/component/coprate/topcard'
 import Deletebox from '@/component/deletebox'
 import EditDilogbox from '@/component/editDilogbox'
-import Tablecu from '@/component/tablecu'
 import { Badge } from '@/components/ui/badge'
 import { IconTrendingUp } from '@tabler/icons-react';
-import { Card, CardAction, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardAction, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area'
 import React, { ChangeEvent, FormEvent, useState } from 'react'
 import {
     Dialog,
-    DialogClose,
     DialogContent,
     DialogDescription,
-    DialogFooter,
     DialogHeader,
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog"
 import { IconCircleDashedPlus } from '@tabler/icons-react'
 import PlansDetail from '@/component/plansDetail'
-import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 
 
@@ -30,63 +24,55 @@ interface Distributor {
     compny_name: string;
     domain: string;
     number: string;
-    features: string;
-    price: string;
+    price: number;
 }
 
 
-export default function Distribut() {
+export default function Distsuperuserribut() {
     const [distrub, setDistrub] = useState<Distributor[]>([{
         "id": "1",
-        "compny_name": "Synck Health",
-        "domain": "Healthcare",
+        "compny_name": "Distubuter 1",
+        "domain": "Email.@gmail.com",
         "number": "9876543210",
-        "features": "24x7 Support",
-        "price": "5000"
+        "price": 12
     },
     {
         "id": "2",
-        "compny_name": "Synck Health",
-        "domain": "Healthcare",
+        "compny_name": "Distubuter 1",
+        "domain": "Email.@gmail.com",
         "number": "9876543210",
-        "features": "24x7 Support",
-        "price": "5000"
+        "price": 15
     },
     {
         "id": "3",
-        "compny_name": "Synck Health",
-        "domain": "Healthcare",
+        "compny_name": "Distubuter 1",
+        "domain": "Email.@gmail.com",
         "number": "9876543210",
-        "features": "24x7 Support",
-        "price": "5000"
+        "price": 5
     },
     {
         "id": "4",
-        "compny_name": "Synck Health",
-        "domain": "Healthcare",
+        "compny_name": "Distubuter 1",
+        "domain": "Email.@gmail.com",
         "number": "9876543210",
-        "features": "24x7 Support",
-        "price": "5000"
+        "price": 20
     },
     {
         "id": "5",
-        "compny_name": "Synck Health",
-        "domain": "Healthcare",
+        "compny_name": "Distubuter 1",
+        "domain": "Email.@gmail.com",
         "number": "9876543210",
-        "features": "24x7 Support",
-        "price": "5000"
+        "price": 10
     },
     ]);
-    const [comition, setComition] = useState(50);
+    const [comition, setComition] = useState(80);
     const [data, setData] = useState<Distributor>({
         id: "",
         compny_name: "",
         domain: "",
         number: "",
-        features: "",
-        price: "",
+        price: 0,
     });
-    // const comition = 100000*(50/100)
     console.log(comition)
 
     // handle input changes
@@ -113,39 +99,20 @@ export default function Distribut() {
             compny_name: "",
             domain: "",
             number: "",
-            features: "",
-            price: "",
+            price: 0,
         });
     };
     const handleDelete = (index: number) => {
         setDistrub((prev) => prev.filter((_, i) => i !== index));
     };
-    const [form, setForm] = useState<Distributor>({
-        id: "",
-        compny_name: "",
-        domain: "",
-        number: "",
-        features: "",
-        price: "",
-    });
-
-    const saveToFile = () => {
-        const fileData = JSON.stringify(form, null, 2);
-        const blob = new Blob([fileData], { type: "application/json" });
-        const url = URL.createObjectURL(blob);
-
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = "data.json"; // file name
-        a.click();
-    };
-
     return (
         <div className='p-5 px-3 flex flex-col gap-5 sm:px-5'>
+            <div className='cardcustom px-6 py-2  rounded-lg flex justify-center'>
+                <p className='text-3xl font-semibold ' >Admin</p></div>
             <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-5' >
                 <Card className="cardcustom md:col-span-1">
                     <CardHeader>
-                        <CardDescription>Total On-Boarding</CardDescription>
+                        <CardDescription>Total Distubuter </CardDescription>
                         <CardTitle className="text-2xl font-semibold tabular-nums sm:text-3xl">
                             ${distrub.reduce(
                                 (total, item) => total + Number(item.price || 0),
@@ -165,10 +132,10 @@ export default function Distribut() {
                     <CardHeader>
                         <CardDescription>Total Pending</CardDescription>
                         <CardTitle className="text-2xl font-semibold tabular-nums sm:text-3xl">
-                            {distrub.reduce(
+                            {Number(comition) - distrub.reduce(
                                 (total, item) => total + Number(item.price || 0),
                                 0
-                            ) * (Number(comition) / 100)}
+                            )}
                         </CardTitle>
                         <CardAction>
                             <Badge variant="outline" className='bg-red-400 border-black rounded-full'>
@@ -180,12 +147,12 @@ export default function Distribut() {
                                         </div>
                                     </DialogTrigger>
                                     <DialogContent className="sm:max-w-[425px]">
-                                   <DialogHeader>
-                                <DialogTitle>Add profile</DialogTitle>
-                                <DialogDescription>
-                                   The pay out persent
-                                </DialogDescription>
-                            </DialogHeader>
+                                        <DialogHeader>
+                                            <DialogTitle>Add profile</DialogTitle>
+                                            <DialogDescription>
+                                                The pay out persent
+                                            </DialogDescription>
+                                        </DialogHeader>
                                         <div className="grid gap-4">
                                             <div className="grid gap-3">
                                                 <Input onChange={(e) => setComition(Number(e.target.value))} />
@@ -196,7 +163,6 @@ export default function Distribut() {
                             </Badge>
                         </CardAction>
                     </CardHeader>
-
                 </Card>
 
                 <Card className="cardcustom border-white md:col-span-2 lg:col-span-1">
@@ -212,13 +178,12 @@ export default function Distribut() {
                             </Badge>
                         </CardAction>
                     </CardHeader>
-
                 </Card>
 
             </div>
 
             <div className='cardcustom px-6 py-2 rounded-lg flex justify-between items-center'>
-                <h3 className='sm:text-lg text-[18px]' >Distribution Dashboard</h3>
+                <h3 className='sm:text-lg text-[18px]' >Admin</h3>
 
                 <div className='flex gap-3'>
                     <Dialog>
@@ -236,13 +201,7 @@ export default function Distribut() {
                             </DialogHeader>
                             {/* Form Step form */}
                             <form onSubmit={handleSubmit} className=' gap-5 md:grid-cols-2 grid grid-cols-1'>
-                                {/* <input
-                                    type="text"
-                                    name="id"
-                                    placeholder="ID"
-                                    value={data.id}
-                                    onChange={handleChange}
-                                /> */}
+
                                 <div>
                                     <label className="block mb-2 font-medium">ID</label>
                                     <input
@@ -256,7 +215,7 @@ export default function Distribut() {
                                 </div>
 
                                 <div>
-                                    <label className="block mb-2 font-medium">Company Name</label>
+                                    <label className="block mb-2 font-medium">Name</label>
                                     <input
                                         type="text"
                                         name="compny_name"
@@ -291,34 +250,7 @@ export default function Distribut() {
                                     />
                                 </div>
 
-                                {/* <input
-                                    type="text"
-                                    name="compny_name"
-                                    placeholder="Company Name"
-                                    value={data.compny_name}
-                                    onChange={handleChange}
-                                />
-                                <br /> */}
-                                {/* 
-                                <input
-                                    type="text"
-                                    name="domain"
-                                    placeholder="Domain"
-                                    value={data.domain}
-                                    onChange={handleChange}
-                                />
-                                <br /> */}
-
-                                {/* <input
-                                    type="text"
-                                    name="number"
-                                    placeholder="Phone Number"
-                                    value={data.number}
-                                    onChange={handleChange}
-                                />
-                                <br /> */}
-
-                                <div>
+                                {/* <div>
                                     <label className="block mb-2 font-medium">Features</label>
                                     <input
                                         type="text"
@@ -328,11 +260,11 @@ export default function Distribut() {
                                         onChange={handleChange}
                                         className="w-full border border-black p-2 rounded"
                                     />
-                                </div>
+                                </div> */}
                                 <div>
-                                    <label className="block mb-2 font-medium">Price</label>
+                                    <label className="block mb-2 font-medium">commissions</label>
                                     <input
-                                        type="text"
+                                        type="number"
                                         name="price"
                                         placeholder="Price"
                                         value={data.price}
@@ -340,25 +272,6 @@ export default function Distribut() {
                                         className="w-full border border-black p-2 rounded"
                                     />
                                 </div>
-
-                                {/* <input
-                                    type="text"
-                                    name="features"
-                                    placeholder="Features"
-                                    value={data.features}
-                                    onChange={handleChange}
-                                />
-                                <br /> */}
-
-                                {/* <input
-                                    type="text"
-                                    name="price"
-                                    placeholder="Price"
-                                    value={data.price}
-                                    onChange={handleChange}
-                                />
-                                <br /> */}
-
                                 <button className="px-4 py-2 col-span-2 bg-blue-600 text-white rounded" type="submit">Add</button>
                             </form>
 
@@ -377,11 +290,11 @@ export default function Distribut() {
                         <thead className='border border-black border-separate'>
                             <tr className="w-full border border-black px-5 py-3 rounded-md">
                                 <th className="py-5 font-light md:font-medium md:text-xl text-center">Id's</th>
-                                <th className="font-light md:font-medium md:text-xl px-4 text-nowrap text-center">Company name</th>
-                                <th className="py-5 font-light md:font-medium md:text-xl text-center">Domain</th>
+                                <th className="font-light md:font-medium md:text-xl px-4 text-nowrap text-center">Name</th>
+                                <th className="py-5 font-light md:font-medium md:text-xl text-center">Email</th>
                                 <th className="py-5 font-light md:font-medium md:text-xl text-center">Number</th>
-                                <th className="py-5 font-light md:font-medium md:text-xl text-center">Features</th>
-                                <th className=" py-5 font-light md:font-medium md:text-xl text-center">Price</th>
+                                {/* <th className="py-5 font-light md:font-medium md:text-xl text-center">Features</th> */}
+                                <th className=" py-5 font-light md:font-medium md:text-xl text-center">commissions </th>
                                 <th className="py-5 px-10 font-light md:font-medium md:text-xl text-center">Actions</th>
                             </tr>
                         </thead>
@@ -395,16 +308,16 @@ export default function Distribut() {
                                     <td className=" text-center"> {item.compny_name} </td>
                                     <td className="p-4 text-center"> {item.domain} </td>
                                     <td className=" p-4 "> {item.number} </td>
-                                    <td className="p-4  ">
+                                    {/* <td className="p-4  ">
                                         {item.features?.includes("|") ? <PlansDetail item={item} /> : `${item.features}`}
-                                    </td>
+                                    </td> */}
                                     <td className=" p-4 text-center"> {item.price} </td>
                                     <td>
                                         <div className="flex justify-center flex-wrap gap-3">
 
                                             {/* <EditDilogbox /> */}
 
-                                            <button className="border-black rounded-md border p-1 h-fit dark:border-white">
+                                            <button className="border-black rounded-md border p-1 h-fit dark:border-white cursor-pointer ">
                                                 {/* <RiDeleteBin6Fill  size={25} className="deletbtn" /> */}
                                                 <Deletebox handleDelete={() => handleDelete(index)} />
 
@@ -425,14 +338,7 @@ export default function Distribut() {
             <div>
 
             </div>
-            <div>
-                <input
-                    placeholder="Company Name"
-                    value={form.compny_name}
-                    onChange={(e) => setForm({ ...form, compny_name: e.target.value })}
-                />
-                <button onClick={saveToFile}>Save JSON</button>
-            </div>
+
 
         </div>
     )

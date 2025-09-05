@@ -57,9 +57,13 @@ const data = {
       icon: SquareTerminal,
       isActive: true,
       items: [
+        // {
+        //   title: "Health Plans",
+        //   url: "/plans",
+        // },
         {
-          title: "Health Plans",
-          url: "/plans",
+          title: "Super User",
+          url: "/superuser",
         },
         {
           title: "Distur",

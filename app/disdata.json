@@ -1,0 +1,34 @@
+[
+  {
+    "id": "1",
+    "compny_name": "Synck Health",
+    "domain": "Healthcare",
+    "number": "9876543210",
+    "features": "24x7 Support",
+    "price": "5000"
+  },
+  {
+    "id": "2",
+    "compny_name": "Synck Health",
+    "domain": "Healthcare",
+    "number": "9876543210",
+    "features": "24x7 Support",
+    "price": "5000"
+  },
+  {
+    "id": "3",
+    "compny_name": "Synck Health",
+    "domain": "Healthcare",
+    "number": "9876543210",
+    "features": "24x7 Support",
+    "price": "5000"
+  },
+  {
+    "id": "4",
+    "compny_name": "Synck Health",
+    "domain": "Healthcare",
+    "number": "9876543210",
+    "features": "24x7 Support",
+    "price": "5000"
+  }
+]
