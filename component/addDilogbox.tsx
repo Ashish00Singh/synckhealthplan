@@ -16,7 +16,6 @@ import DynamicStepForm from "./DynamicStepForm"
 export default function AddDilogbox() {
   return (
     <Dialog>
-      <form>
         <DialogTrigger asChild>
           <button className="border-black rounded-md border p-1 dark:border-white">
             <IconCircleDashedPlus stroke={2} className="sm:w-7 w-6 sm:h-7 h-6" /></button>
@@ -29,11 +28,10 @@ export default function AddDilogbox() {
               done.
             </DialogDescription>
           </DialogHeader>
-{/* Form Step form */}
+          {/* Form Step form */}
           <DynamicStepForm />
-          
+
         </DialogContent>
-      </form>
     </Dialog>
 
   )

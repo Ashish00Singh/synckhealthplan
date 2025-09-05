@@ -4,12 +4,11 @@ import { IconTrash } from '@tabler/icons-react'
 import React from 'react'
 import { RiDeleteBin6Fill } from 'react-icons/ri'
 
-export default function Deletebox() {
+export default function Deletebox({handleDelete}:any) {
   return (
     <div>
         <AlertDialog>
       <AlertDialogTrigger asChild>
-       {/* <RiDeleteBin6Fill  size={25} className="deletbtn" /> */}
       <IconTrash stroke={2}   className="deletbtn sm:w-7 w-6 sm:h-7 h-6"  />
       </AlertDialogTrigger>
       <AlertDialogContent>
@@ -22,7 +21,7 @@ export default function Deletebox() {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction>Continue</AlertDialogAction>
+          <AlertDialogAction onClick={handleDelete} >Continue</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

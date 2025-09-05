@@ -62,8 +62,8 @@ const data = {
           url: "/plans",
         },
         {
-          title: "Starred",
-          url: "/adii",
+          title: "Distur",
+          url: "/distribut",
         },
         {
           title: "Settings",

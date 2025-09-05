@@ -1,7 +1,6 @@
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area'
 import React from 'react'
 import EditDilogbox from './editDilogbox'
-import { RiDeleteBin6Fill } from 'react-icons/ri'
 import Deletebox from './deletebox'
 
 export default function Tablecu() {
