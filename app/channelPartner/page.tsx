@@ -1,15 +1,19 @@
 "use client"
+import AddDilogbox from '@/component/addDilogbox'
+import Topcard from '@/component/coprate/topcard'
 import Deletebox from '@/component/deletebox'
 import EditDilogbox from '@/component/editDilogbox'
 import { Badge } from '@/components/ui/badge'
 import { IconTrendingUp } from '@tabler/icons-react';
-import { Card, CardAction, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardAction, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area'
 import React, { ChangeEvent, FormEvent, useState } from 'react'
 import {
     Dialog,
+    DialogClose,
     DialogContent,
     DialogDescription,
+    DialogFooter,
     DialogHeader,
     DialogTitle,
     DialogTrigger,
@@ -21,58 +25,68 @@ import { Input } from '@/components/ui/input'
 
 interface Distributor {
     id: string;
-    compny_name: string;
+    name: string;
     domain: string;
     number: string;
-    price: number;
+    features: string;
+    price: string;
 }
 
 
-export default function Distsuperuserribut() {
-    const [distrub, setDistrub] = useState<Distributor[]>([{
-        "id": "1",
-        "compny_name": "Distubuter 1",
-        "domain": "Email.@gmail.com",
-        "number": "9876543210",
-        "price": 12
-    },
-    {
-        "id": "2",
-        "compny_name": "Distubuter 1",
-        "domain": "Email.@gmail.com",
-        "number": "9876543210",
-        "price": 15
-    },
-    {
-        "id": "3",
-        "compny_name": "Distubuter 1",
-        "domain": "Email.@gmail.com",
-        "number": "9876543210",
-        "price": 5
-    },
-    {
-        "id": "4",
-        "compny_name": "Distubuter 1",
-        "domain": "Email.@gmail.com",
-        "number": "9876543210",
-        "price": 20
-    },
-    {
-        "id": "5",
-        "compny_name": "Distubuter 1",
-        "domain": "Email.@gmail.com",
-        "number": "9876543210",
-        "price": 10
-    },
-    ]);
-    const [comition, setComition] = useState(80);
+export default function ChannelPartner() {
+    const [distrub, setDistrub] = useState<Distributor[]>(
+      [
+  {
+    "id": "1",
+    "name": "Ravi Sharma",
+    "domain": "Healthcare",
+    "number": "9876543210",
+    "features": "SYNCK-PL-105",
+    "price": "5500"
+  },
+  {
+    "id": "2",
+    "name": "Anita Patel",
+    "domain": "Healthcare",
+    "number": "9823456781",
+    "features": "SYNCK-PL-0K5",
+    "price": "7200"
+  },
+  {
+    "id": "3",
+    "name": "Vikram Verma",
+    "domain": "Healthcare",
+    "number": "9765432109",
+    "features": "SYNCK-PL-0O5",
+    "price": "8900"
+  },
+  {
+    "id": "4",
+    "name": "Priya Iyer",
+    "domain": "Healthcare",
+    "number": "9912345678",
+    "features": "SYNCK-PL-005",
+    "price": "12000"
+  },
+  {
+    "id": "5",
+    "name": "Imran Khan",
+    "domain": "Healthcare",
+    "number": "9898765432",
+    "features": "SYNCK-PL-005",
+    "price": "950"}]
+
+);
+    const [comition, setComition] = useState(50);
     const [data, setData] = useState<Distributor>({
         id: "",
-        compny_name: "",
+        name: "",
         domain: "",
         number: "",
-        price: 0,
+        features: "",
+        price: "",
     });
+    // const comition = 100000*(50/100)
     console.log(comition)
 
     // handle input changes
@@ -88,7 +102,7 @@ export default function Distsuperuserribut() {
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        if (!data.compny_name || !data.domain) {
+        if (!data.name || !data.domain) {
             alert("Please fill all required fields!");
             return;
         }
@@ -96,25 +110,25 @@ export default function Distsuperuserribut() {
         setDistrub((prev) => [...prev, data]);
         setData({
             id: "",
-            compny_name: "",
+            name: "",
             domain: "",
             number: "",
-            price: 0,
+            features: "",
+            price: "",
         });
     };
     const handleDelete = (index: number) => {
         setDistrub((prev) => prev.filter((_, i) => i !== index));
     };
+   
     return (
         <div className='p-5 px-3 flex flex-col gap-5 sm:px-5'>
-            <div className='cardcustom px-6 py-2  rounded-lg flex justify-center'>
-                <p className='text-3xl font-semibold ' >Admin</p></div>
             <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-5' >
                 <Card className="cardcustom md:col-span-1">
                     <CardHeader>
-                        <CardDescription>Total Distubuter </CardDescription>
+                        <CardDescription>Total On-Boarding</CardDescription>
                         <CardTitle className="text-2xl font-semibold tabular-nums sm:text-3xl">
-                            ${distrub.reduce(
+                            ₹ {distrub.reduce(
                                 (total, item) => total + Number(item.price || 0),
                                 0
                             )}
@@ -132,14 +146,14 @@ export default function Distsuperuserribut() {
                     <CardHeader>
                         <CardDescription>Total Pending</CardDescription>
                         <CardTitle className="text-2xl font-semibold tabular-nums sm:text-3xl">
-                            {Number(comition) - distrub.reduce(
+                           ₹ {distrub.reduce(
                                 (total, item) => total + Number(item.price || 0),
                                 0
-                            )}
+                            ) * (Number(comition) / 100)} 
                         </CardTitle>
                         <CardAction>
                             <Badge variant="outline" className='bg-red-400 border-black rounded-full'>
-                                <IconTrendingUp />
+                              %
                                 <Dialog>
                                     <DialogTrigger asChild>
                                         <div>
@@ -163,13 +177,14 @@ export default function Distsuperuserribut() {
                             </Badge>
                         </CardAction>
                     </CardHeader>
+
                 </Card>
 
                 <Card className="cardcustom border-white md:col-span-2 lg:col-span-1">
                     <CardHeader>
                         <CardDescription>Closed</CardDescription>
                         <CardTitle className="text-2xl font-semibold tabular-nums sm:text-3xl">
-                            $1,250.00
+                            ₹ 1,250.00
                         </CardTitle>
                         <CardAction>
                             <Badge variant="outline" className='bg-green-400 border-black rounded-full border'>
@@ -178,12 +193,13 @@ export default function Distsuperuserribut() {
                             </Badge>
                         </CardAction>
                     </CardHeader>
+
                 </Card>
 
             </div>
 
             <div className='cardcustom px-6 py-2 rounded-lg flex justify-between items-center'>
-                <h3 className='sm:text-lg text-[18px]' >Admin</h3>
+                <h3 className='sm:text-lg text-[18px]' >Channel Partner</h3>
 
                 <div className='flex gap-3'>
                     <Dialog>
@@ -201,7 +217,7 @@ export default function Distsuperuserribut() {
                             </DialogHeader>
                             {/* Form Step form */}
                             <form onSubmit={handleSubmit} className=' gap-5 md:grid-cols-2 grid grid-cols-1'>
-
+                               
                                 <div>
                                     <label className="block mb-2 font-medium">ID</label>
                                     <input
@@ -215,12 +231,12 @@ export default function Distsuperuserribut() {
                                 </div>
 
                                 <div>
-                                    <label className="block mb-2 font-medium">Name</label>
+                                    <label className="block mb-2 font-medium">Company Name</label>
                                     <input
                                         type="text"
-                                        name="compny_name"
+                                        name="name"
                                         placeholder="Company Name"
-                                        value={data.compny_name}
+                                        value={data.name}
                                         onChange={handleChange}
                                         className="w-full border border-black p-2 rounded"
                                     />
@@ -250,7 +266,7 @@ export default function Distsuperuserribut() {
                                     />
                                 </div>
 
-                                {/* <div>
+                                <div>
                                     <label className="block mb-2 font-medium">Features</label>
                                     <input
                                         type="text"
@@ -260,11 +276,11 @@ export default function Distsuperuserribut() {
                                         onChange={handleChange}
                                         className="w-full border border-black p-2 rounded"
                                     />
-                                </div> */}
+                                </div>
                                 <div>
-                                    <label className="block mb-2 font-medium">commissions</label>
+                                    <label className="block mb-2 font-medium">Price</label>
                                     <input
-                                        type="number"
+                                        type="text"
                                         name="price"
                                         placeholder="Price"
                                         value={data.price}
@@ -290,11 +306,11 @@ export default function Distsuperuserribut() {
                         <thead className='border border-black border-separate'>
                             <tr className="w-full border border-black px-5 py-3 rounded-md">
                                 <th className="py-5 font-light md:font-medium md:text-xl text-center">Id's</th>
-                                <th className="font-light md:font-medium md:text-xl px-4 text-nowrap text-center">Name</th>
-                                <th className="py-5 font-light md:font-medium md:text-xl text-center">Email</th>
+                                <th className="font-light md:font-medium md:text-xl px-4 text-nowrap text-center">Company name</th>
+                                <th className="py-5 font-light md:font-medium md:text-xl text-center">Domain</th>
                                 <th className="py-5 font-light md:font-medium md:text-xl text-center">Number</th>
-                                {/* <th className="py-5 font-light md:font-medium md:text-xl text-center">Features</th> */}
-                                <th className=" py-5 font-light md:font-medium md:text-xl text-center">commissions </th>
+                                <th className="py-5 font-light md:font-medium md:text-xl text-center">Plan Id</th>
+                                <th className=" py-5 font-light md:font-medium md:text-xl text-center">Price</th>
                                 <th className="py-5 px-10 font-light md:font-medium md:text-xl text-center">Actions</th>
                             </tr>
                         </thead>
@@ -304,20 +320,20 @@ export default function Distsuperuserribut() {
 
                             {distrub.map((item, index) =>
                                 <tr key={index} className="border-b border-[#ffffff81] hover:bg-gray-300 bgtable transition-colors">
-                                    <td className="p-4 text-center"> {item.id} </td>
-                                    <td className=" text-center"> {item.compny_name} </td>
+                                    <td className="p-4 text-center"> {index +1} </td>
+                                    <td className=" text-center"> {item.name} </td>
                                     <td className="p-4 text-center"> {item.domain} </td>
-                                    <td className=" p-4 "> {item.number} </td>
-                                    {/* <td className="p-4  ">
-                                        {item.features?.includes("|") ? <PlansDetail item={item} /> : `${item.features}`}
-                                    </td> */}
+                                    <td className=" p-4 text-center"> {item.number} </td>
+                                    <td className="p-4 text-center ">
+                                        {item.features}
+                                    </td>
                                     <td className=" p-4 text-center"> {item.price} </td>
                                     <td>
                                         <div className="flex justify-center flex-wrap gap-3">
 
                                             {/* <EditDilogbox /> */}
 
-                                            <button className="border-black rounded-md border p-1 h-fit dark:border-white cursor-pointer ">
+                                            <button className="border-black rounded-md border p-1 h-fit dark:border-white">
                                                 {/* <RiDeleteBin6Fill  size={25} className="deletbtn" /> */}
                                                 <Deletebox handleDelete={() => handleDelete(index)} />
 
@@ -334,11 +350,7 @@ export default function Distsuperuserribut() {
 
                     <ScrollBar orientation="horizontal" />
                 </ScrollArea>
-            </div>
-            <div>
-
-            </div>
-
+            </div>            
 
         </div>
     )

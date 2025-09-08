@@ -10,9 +10,11 @@ const PageHeading = () => {
     "/plans": "Health Plans",
     "/profile": "User Profile",
     "/settings": "Settings",
+    "/primeDistributor":"Prime Distributor",
+    "/channelPartner":"Channel Partner",
   };
 
-  return <h3 className="text-white font-semibold text-xl leading-44 " >{headings[pathname] ?? "Synck Health"}</h3>;
+  return <h3 className="text-white text-xl leading-44 " >{headings[pathname] ?? "Synck Health"}</h3>;
 };
 
 export default PageHeading;

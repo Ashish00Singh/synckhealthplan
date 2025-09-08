@@ -55,17 +55,19 @@ export default function RootLayout({
             <AppSidebar />
             <SidebarInset>
               <header className="flex justify-between border-b bg-[#2F53E6] border-black h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
-                <div className="flex items-center gap-2 px-4">
-                  {/* <SidebarTrigger className="ml-1" /> */}
-                  <CustomSidebarButton />
+               
+                <CustomSidebarButton />
+                
+                <div className="flex items-center gap-2 px-4"> 
+                  <PageHeading />
                   <Separator
                     orientation="vertical"
-                    className="mr-2 data-[orientation=vertical]:h-4"
+                    className=" data-[orientation=vertical]:h-6"
                   />
                   <ModeToggle />
-                  <PageHeading />
-
                 </div>
+
+
               </header>
               <div className="homerr flex flex-1 flex-col gap-4">
 
