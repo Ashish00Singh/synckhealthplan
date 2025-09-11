@@ -25,55 +25,55 @@ interface Distributor {
     email: string;
     number: string;
     price: number;
-    bugness?:number;
+    bugness?: number;
 }
 
 
 export default function PrimeDistributor() {
     const [distrub, setDistrub] = useState<Distributor[]>([
-    {
-        "id": "1",
-        "name": "Siddharth Rao",
-        "email": "siddharth.rao@gmail.com",
-        "number": "9876501234",
-        "price": 72,
-        "bugness": 1800
-    },
-    {
-        "id": "2",
-        "name": "Neha Kapoor",
-        "email": "neha.kapoor@gmail.com",
-        "number": "9123409876",
-        "price": 15,
-        "bugness": 700
-    },
-    {
-        "id": "3",
-        "name": "Vikram Joshi",
-        "email": "vikram.joshi@gmail.com",
-        "number": "9988712345",
-        "price": 5,
-        "bugness": 1200
-    },
-    {
-        "id": "4",
-        "name": "Richa Nair",
-        "email": "richa.nair@gmail.com",
-        "number": "9871265432",
-        "price": 20,
-        "bugness": 500
-    },
-    {
-        "id": "5",
-        "name": "Aditya Malhotra",
-        "email": "aditya.malhotra@gmail.com",
-        "number": "9765432198",
-        "price": 10,
-        "bugness": 1500
-    }
-]
-);
-    const [comition, setComition] = useState(distrub.reduce((sum, item:any) => sum + item.bugness, 0));
+        {
+            "id": "1",
+            "name": "Siddharth Rao",
+            "email": "siddharth.rao@gmail.com",
+            "number": "9876501234",
+            "price": 72,
+            "bugness": 1800
+        },
+        {
+            "id": "2",
+            "name": "Neha Kapoor",
+            "email": "neha.kapoor@gmail.com",
+            "number": "9123409876",
+            "price": 15,
+            "bugness": 700
+        },
+        {
+            "id": "3",
+            "name": "Vikram Joshi",
+            "email": "vikram.joshi@gmail.com",
+            "number": "9988712345",
+            "price": 5,
+            "bugness": 1200
+        },
+        {
+            "id": "4",
+            "name": "Richa Nair",
+            "email": "richa.nair@gmail.com",
+            "number": "9871265432",
+            "price": 20,
+            "bugness": 500
+        },
+        {
+            "id": "5",
+            "name": "Aditya Malhotra",
+            "email": "aditya.malhotra@gmail.com",
+            "number": "9765432198",
+            "price": 10,
+            "bugness": 1500
+        }
+    ]
+    );
+    const [comition, setComition] = useState(distrub.reduce((sum, item: any) => sum + item.bugness, 0));
     // const totalBugness = 
     const [data, setData] = useState<Distributor>({
         id: "",
@@ -83,16 +83,16 @@ export default function PrimeDistributor() {
         price: 0,
     });
 
-   const daea = () => {
-  return distrub.reduce((sum, item) => {
-    if (Number(item.price)) {
-      return sum + ((Number(item.price)*Number(item.bugness))/100 )
-    }
+    const daea = () => {
+        return distrub.reduce((sum, item) => {
+            if (Number(item.price)) {
+                return sum + ((Number(item.price) * Number(item.bugness)) / 100)
+            }
 
-        return sum
-    
-  }, 0)
-}
+            return sum
+
+        }, 0)
+    }
 
 
 
@@ -156,37 +156,21 @@ export default function PrimeDistributor() {
                     <CardHeader>
                         <CardDescription>Remaning</CardDescription>
                         <CardTitle className="text-2xl font-semibold tabular-nums sm:text-2xl">
-                           <p className='text-sm'>
-                             {(distrub.reduce(
-                                (total, item) => total + Number(item.bugness || 0),
-                                0
-                            )*80/100) - (distrub.reduce(
-                                (total, item) => total + Number(item.bugness || 0),
-                                0
-                            )*70/100)
-                            } 
-                           </p>
+
                             ₹ {(distrub.reduce(
                                 (total, item) => total + Number(item.bugness || 0),
                                 0
-                            )*80/100)- daea()
+                            ) * 80 / 100) - daea()
                             }
-                            
+
 
 
                         </CardTitle>
                         <CardAction>
                             <Badge variant="outline" className='bg-red-400 border-black rounded-full'>
                                 <IconTrendingUp />
-                                 
-                                 <span className='text-sx'>{(distrub.reduce(
-                                (total, item) => total + Number(item.bugness || 0),
-                                0
-                            )*80/100) - (distrub.reduce(
-                                (total, item) => total + Number(item.bugness || 0),
-                                0
-                            )*70/100)
-                            }</span>
+
+                                10%
                             </Badge>
                         </CardAction>
                     </CardHeader>
@@ -194,16 +178,27 @@ export default function PrimeDistributor() {
 
                 <Card className="cardcustom border-white md:col-span-1">
                     <CardHeader>
-                        <CardDescription>Remaning</CardDescription>
+                        <CardDescription>Sub Remaning </CardDescription>
                         <CardTitle className="text-2xl font-semibold tabular-nums sm:text-2xl">
-                           
+
+                            ₹ {((distrub.reduce(
+                                (total, item) => total + Number(item.bugness || 0),
+                                0
+                            ) * 80 / 100) - daea()) - ((distrub.reduce(
+                                (total, item) => total + Number(item.bugness || 0),
+                                0
+                            ) * 80 / 100) - (distrub.reduce(
+                                (total, item) => total + Number(item.bugness || 0),
+                                0
+                            ) * 70 / 100))
+                            }
                         </CardTitle>
-                        <CardAction>
+                        {/* <CardAction>
                             <Badge variant="outline" className='bg-red-400 border-black rounded-full'>
                                 <IconTrendingUp />
-                               
+
                             </Badge>
-                        </CardAction>
+                        </CardAction> */}
                     </CardHeader>
                 </Card>
 
@@ -211,7 +206,10 @@ export default function PrimeDistributor() {
                     <CardHeader>
                         <CardDescription>Total Earning </CardDescription>
                         <CardTitle className="text-2xl font-semibold tabular-nums sm:text-2xl">
-                           {comition}
+                            ₹ {(distrub.reduce(
+                                (total, item) => total + Number(item.bugness || 0),
+                                0
+                            ) * 80 / 100)}
                         </CardTitle>
                         <CardAction>
                             <Badge variant="outline" className='bg-green-400 border-black rounded-full border'>
@@ -337,7 +335,7 @@ export default function PrimeDistributor() {
                                 <th className="py-5 font-light md:font-medium md:text-xl text-center">Sale</th>
                                 {/* <th className="py-5 font-light md:font-medium md:text-xl text-center">Features</th> */}
                                 <th className=" py-5 font-light md:font-medium md:text-xl text-center">commissions </th>
-                                <th className="py-5 px-10 font-light md:font-medium md:text-xl text-center">Actions</th>
+                                {/* <th className="py-5 px-10 font-light md:font-medium md:text-xl text-center">Actions</th> */}
                             </tr>
                         </thead>
                         <tbody className="h-full">
@@ -346,7 +344,7 @@ export default function PrimeDistributor() {
 
                             {distrub.map((item, index) =>
                                 <tr key={index} className="border-b border-[#ffffff81] hover:bg-gray-300 bgtable transition-colors">
-                                    <td className="p-4 text-center"> {index +1} </td>
+                                    <td className="p-4 text-center"> {index + 1} </td>
                                     <td className=" text-center"> {item.name} </td>
                                     <td className="p-4 text-center"> {item.email} </td>
                                     <td className=" p-4 "> ₹ {item.bugness} </td>
@@ -354,18 +352,17 @@ export default function PrimeDistributor() {
                                         {item.features?.includes("|") ? <PlansDetail item={item} /> : `${item.features}`}
                                     </td> */}
                                     <td className=" p-4 text-center"> {item.price} </td>
-                                    <td>
+                                    {/* <td>
                                         <div className="flex justify-center flex-wrap gap-3">
 
-                                           {item === undefined ? "asdasd": <EditDilogbox item={item} distrub={distrub} setDistrub={setDistrub} /> } 
+                                            {item === undefined ? "asdasd" : <EditDilogbox item={item} distrub={distrub} setDistrub={setDistrub} />}
 
                                             <button className="border-black rounded-md border p-1 h-fit dark:border-white cursor-pointer ">
-                                                {/* <RiDeleteBin6Fill  size={25} className="deletbtn" /> */}
                                                 <Deletebox handleDelete={() => handleDelete(index)} />
 
                                             </button>
                                         </div>
-                                    </td>
+                                    </td> */}
                                 </tr>
                             )}
 
