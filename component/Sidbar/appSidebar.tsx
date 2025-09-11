@@ -51,8 +51,32 @@ const data = {
     },
   ],
   navMain: [
+    // {
+    //   title: "Adding Plans",
+    //   url: "#",
+    //   icon: SquareTerminal,
+    //   isActive: true,
+    //   items: [
+    //     // {
+    //     //   title: "Health Plans",
+    //     //   url: "/plans",
+    //     // },
+    //     // {
+    //     //   title: "Prime Distributor",
+    //     //   url: "/primeDistributor",
+    //     // },
+    //     {
+    //       title: "Channel Partner",
+    //       url: "/channelPartner",
+    //     },
+    //     {
+    //       title: "Settings",
+    //       url: "#",
+    //     },
+    //   ],
+    // },
     {
-      title: "Adding Plans",
+      title: "Prime Distributor",
       url: "#",
       icon: SquareTerminal,
       isActive: true,
@@ -68,6 +92,10 @@ const data = {
         {
           title: "Channel Partner",
           url: "/channelPartner",
+        },
+        {
+          title: "Partner Analytics",
+          url: "/partnerAnalytics",
         },
         {
           title: "Settings",

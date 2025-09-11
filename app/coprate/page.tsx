@@ -15,7 +15,7 @@ export default function Coprate() {
 
         <div className='flex gap-3'>
           <AddDilogbox />
-          <EditDilogbox />
+          {/* <EditDilogbox /> */}
         </div>
       </div>
 

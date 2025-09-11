@@ -33,7 +33,7 @@ export default function Tablecu() {
                     <td>
                       <div className="flex justify-center flex-wrap gap-3">
                         
-                           <EditDilogbox />
+                           {/* <EditDilogbox /> */}
                        
                          <button className="border-black rounded-md border p-1 h-fit dark:border-white">
                           {/* <RiDeleteBin6Fill  size={25} className="deletbtn" /> */}

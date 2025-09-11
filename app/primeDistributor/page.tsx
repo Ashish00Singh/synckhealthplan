@@ -25,6 +25,7 @@ interface Distributor {
     email: string;
     number: string;
     price: number;
+    bugness?:number;
 }
 
 
@@ -35,39 +36,45 @@ export default function PrimeDistributor() {
         "name": "Siddharth Rao",
         "email": "siddharth.rao@gmail.com",
         "number": "9876501234",
-        "price": 12
+        "price": 72,
+        "bugness": 1800
     },
     {
         "id": "2",
         "name": "Neha Kapoor",
         "email": "neha.kapoor@gmail.com",
         "number": "9123409876",
-        "price": 15
+        "price": 15,
+        "bugness": 700
     },
     {
         "id": "3",
         "name": "Vikram Joshi",
         "email": "vikram.joshi@gmail.com",
         "number": "9988712345",
-        "price": 5
+        "price": 5,
+        "bugness": 1200
     },
     {
         "id": "4",
         "name": "Richa Nair",
         "email": "richa.nair@gmail.com",
         "number": "9871265432",
-        "price": 20
+        "price": 20,
+        "bugness": 500
     },
     {
         "id": "5",
         "name": "Aditya Malhotra",
         "email": "aditya.malhotra@gmail.com",
         "number": "9765432198",
-        "price": 10
+        "price": 10,
+        "bugness": 1500
     }
 ]
 );
-    const [comition, setComition] = useState(80);
+    const [comition, setComition] = useState(distrub.reduce((sum, item:any) => sum + item.bugness, 0));
+    // const totalBugness = 
     const [data, setData] = useState<Distributor>({
         id: "",
         name: "",
@@ -75,7 +82,21 @@ export default function PrimeDistributor() {
         number: "",
         price: 0,
     });
-    console.log(comition)
+
+   const daea = () => {
+  return distrub.reduce((sum, item) => {
+    if (Number(item.price)) {
+      return sum + ((Number(item.price)*Number(item.bugness))/100 )
+    }
+
+        return sum
+    
+  }, 0)
+}
+
+
+
+
 
     // handle input changes
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -111,20 +132,61 @@ export default function PrimeDistributor() {
         <div className='p-5 px-3 flex flex-col gap-5 sm:px-5'>
             <div className='cardcustom px-6 py-2  rounded-lg flex justify-center'>
                 <p className='text-3xl font-semibold ' >Prime Distributor</p></div>
-            <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-5' >
+            <div className='grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 gap-5' >
+
                 <Card className="cardcustom md:col-span-1">
                     <CardHeader>
                         <CardDescription>Total Distubuted </CardDescription>
-                        <CardTitle className="text-2xl font-semibold tabular-nums sm:text-3xl">
-                            {distrub.reduce(
-                                (total, item) => total + Number(item.price || 0),
+                        <CardTitle className="text-xl font-semibold tabular-nums sm:text-2xl">
+                            ₹ {distrub.reduce(
+                                (total, item) => total + Number(item.bugness || 0),
                                 0
-                            )} %
+                            )}
                         </CardTitle>
-                        <CardAction>
+                        {/* <CardAction>
                             <Badge variant="outline" className='bg-blue-400 border-black rounded-full'>
                                 <IconTrendingUp />
                                 sr
+                            </Badge>
+                        </CardAction> */}
+                    </CardHeader>
+                </Card>
+
+                <Card className="cardcustom border-white md:col-span-1">
+                    <CardHeader>
+                        <CardDescription>Remaning</CardDescription>
+                        <CardTitle className="text-2xl font-semibold tabular-nums sm:text-2xl">
+                           <p className='text-sm'>
+                             {(distrub.reduce(
+                                (total, item) => total + Number(item.bugness || 0),
+                                0
+                            )*80/100) - (distrub.reduce(
+                                (total, item) => total + Number(item.bugness || 0),
+                                0
+                            )*70/100)
+                            } 
+                           </p>
+                            ₹ {(distrub.reduce(
+                                (total, item) => total + Number(item.bugness || 0),
+                                0
+                            )*80/100)- daea()
+                            }
+                            
+
+
+                        </CardTitle>
+                        <CardAction>
+                            <Badge variant="outline" className='bg-red-400 border-black rounded-full'>
+                                <IconTrendingUp />
+                                 
+                                 <span className='text-sx'>{(distrub.reduce(
+                                (total, item) => total + Number(item.bugness || 0),
+                                0
+                            )*80/100) - (distrub.reduce(
+                                (total, item) => total + Number(item.bugness || 0),
+                                0
+                            )*70/100)
+                            }</span>
                             </Badge>
                         </CardAction>
                     </CardHeader>
@@ -133,50 +195,28 @@ export default function PrimeDistributor() {
                 <Card className="cardcustom border-white md:col-span-1">
                     <CardHeader>
                         <CardDescription>Remaning</CardDescription>
-                        <CardTitle className="text-2xl font-semibold tabular-nums sm:text-3xl">
-                            {Number(comition) - distrub.reduce(
-                                (total, item) => total + Number(item.price || 0),
-                                0
-                            )} %
+                        <CardTitle className="text-2xl font-semibold tabular-nums sm:text-2xl">
+                           
                         </CardTitle>
                         <CardAction>
                             <Badge variant="outline" className='bg-red-400 border-black rounded-full'>
                                 <IconTrendingUp />
-                                <Dialog>
-                                    <DialogTrigger asChild>
-                                        <div>
-                                            {comition}
-                                        </div>
-                                    </DialogTrigger>
-                                    <DialogContent className="sm:max-w-[425px]">
-                                        <DialogHeader>
-                                            <DialogTitle>Add profile</DialogTitle>
-                                            <DialogDescription>
-                                                The pay out persent
-                                            </DialogDescription>
-                                        </DialogHeader>
-                                        <div className="grid gap-4">
-                                            <div className="grid gap-3">
-                                                <Input onChange={(e) => setComition(Number(e.target.value))} />
-                                            </div>
-                                        </div>
-                                    </DialogContent>
-                                </Dialog>
+                               
                             </Badge>
                         </CardAction>
                     </CardHeader>
                 </Card>
 
-                <Card className="cardcustom border-white md:col-span-2 lg:col-span-1">
+                <Card className="cardcustom border-white lg:col-span-1">
                     <CardHeader>
                         <CardDescription>Total Earning </CardDescription>
-                        <CardTitle className="text-2xl font-semibold tabular-nums sm:text-3xl">
-                            ₹ 1,250.00
+                        <CardTitle className="text-2xl font-semibold tabular-nums sm:text-2xl">
+                           {comition}
                         </CardTitle>
                         <CardAction>
                             <Badge variant="outline" className='bg-green-400 border-black rounded-full border'>
                                 <IconTrendingUp />
-                                +12.5%
+                                80%
                             </Badge>
                         </CardAction>
                     </CardHeader>
@@ -294,7 +334,7 @@ export default function PrimeDistributor() {
                                 <th className="py-5 font-light md:font-medium md:text-xl text-center">Id's</th>
                                 <th className="font-light md:font-medium md:text-xl px-4 text-nowrap text-center">Name</th>
                                 <th className="py-5 font-light md:font-medium md:text-xl text-center">Email</th>
-                                <th className="py-5 font-light md:font-medium md:text-xl text-center">Number</th>
+                                <th className="py-5 font-light md:font-medium md:text-xl text-center">Sale</th>
                                 {/* <th className="py-5 font-light md:font-medium md:text-xl text-center">Features</th> */}
                                 <th className=" py-5 font-light md:font-medium md:text-xl text-center">commissions </th>
                                 <th className="py-5 px-10 font-light md:font-medium md:text-xl text-center">Actions</th>
@@ -309,7 +349,7 @@ export default function PrimeDistributor() {
                                     <td className="p-4 text-center"> {index +1} </td>
                                     <td className=" text-center"> {item.name} </td>
                                     <td className="p-4 text-center"> {item.email} </td>
-                                    <td className=" p-4 "> {item.number} </td>
+                                    <td className=" p-4 "> ₹ {item.bugness} </td>
                                     {/* <td className="p-4  ">
                                         {item.features?.includes("|") ? <PlansDetail item={item} /> : `${item.features}`}
                                     </td> */}
@@ -317,7 +357,7 @@ export default function PrimeDistributor() {
                                     <td>
                                         <div className="flex justify-center flex-wrap gap-3">
 
-                                            {/* <EditDilogbox /> */}
+                                           {item === undefined ? "asdasd": <EditDilogbox item={item} distrub={distrub} setDistrub={setDistrub} /> } 
 
                                             <button className="border-black rounded-md border p-1 h-fit dark:border-white cursor-pointer ">
                                                 {/* <RiDeleteBin6Fill  size={25} className="deletbtn" /> */}

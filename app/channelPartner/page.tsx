@@ -19,7 +19,6 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog"
 import { IconCircleDashedPlus } from '@tabler/icons-react'
-import PlansDetail from '@/component/plansDetail'
 import { Input } from '@/components/ui/input'
 
 
